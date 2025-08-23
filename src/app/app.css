@@ -1,0 +1,15 @@
+:root{
+    --primary-color: #D7A184;
+    --secondary-color: #D4C2AD;
+    --tertiary-color: #66796B;
+    --main-width: 100%;
+    --main-height: 100%;
+}
+.container{
+    margin: 20px auto;
+    font-family: Arial, G+Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #66796B;
+    max-width: var(--main-width);
+    font-family: 'Montserrat', sans-serif;
+}
