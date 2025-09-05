@@ -3,11 +3,11 @@
     grid-template-columns: 120px 1fr;
     gap: 16px;
     padding: 16px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #66796B;
     border-radius: 12px;
     background: #fff;
     height: 180px;
-    width: 350px;
+    width: 320px;
 }
 
 .card.promo {
@@ -17,7 +17,7 @@
 
 .thumb {
     width: 120px;
-    height: 120px;
+    height: 180px;
     object-fit: cover;
     border-radius: 8px;
     background: #f3f4f6;

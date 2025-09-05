@@ -12,23 +12,25 @@ export class ListaProdutos {
   produtos: Produto[] = [
     {
       id: 1,
-      nome: 'Produto 1',
-      descricao: 'Produto 1',
-      preco: 178.90,
-      imageURL: 'images/logoifsp.png',
+      nome: 'A Vida Invisível de Addie Larue',
+      descricao: 'V.E Schwab - Fantasia',
+      preco: 30.00,
+      imageURL: 'images/a_vida_invisivel_de_addie_larue.jpg',
       promo: true
     },
     {
       id: 2,
-      nome: 'Produto 2',
-      descricao: 'Produto 2',
-      preco: 100
+      nome: 'Misery',
+      descricao: 'Stephen King - Suspense',
+      preco: 79.90,
+      imageURL: 'https://i.pinimg.com/1200x/75/73/b8/7573b8d08e7c479e40ef0504ad8fc3b9.jpg'
     },
     {
       id: 3,
-      nome: 'Produto 3',
-      descricao: 'Produto 3',
-      preco: 78.90
+      nome: 'O Vilarejo',
+      descricao: 'Raphael Montes - Thriller',
+      preco: 50.90,
+      imageURL: 'images/o_vilarejo.jpg'
     }
   ]
 add: any;
