@@ -3,11 +3,10 @@
     grid-template-columns: 120px 1fr;
     gap: 16px;
     padding: 16px;
-    border: 1px solid #66796B;
+    border: 1px solid #e5e7eb;
     border-radius: 12px;
     background: #fff;
     height: 180px;
-    width: 320px;
 }
 
 .card.promo {
@@ -17,7 +16,7 @@
 
 .thumb {
     width: 120px;
-    height: 180px;
+    height: 120px;
     object-fit: cover;
     border-radius: 8px;
     background: #f3f4f6;
@@ -48,12 +47,43 @@
 .preco {
     font-weight: 700;
     color: #111827;
+    margin-right: 8px;
+}
+
+.preco-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.preco-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.preco.desconto {
+    color: #d32f2f;
+    font-weight: bold;
+
+}
+
+.preco.original {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.9rem;
 }
 
 .acoes {
     display: flex;
     gap: 12px;
     margin-top: 8px;
+}
+
+.esgotado{
+    padding-top: 10px;
+    color: red;
+    font-weight: bold;
 }
 
 .btn {
@@ -80,4 +110,52 @@
 
 .btn.ghost:hover {
     background: #f9fafb;
+}
+
+.selo {
+    display: inline-block;
+    font-size: .75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+.selo.novo { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+.selo.esgotado { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+.selo.promo { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto 1fr; 
+        height: auto; 
+        text-align: center;
+        padding: 12px; 
+    }
+
+    .thumb {
+        width: 100%; 
+        height: auto;
+        margin-bottom: 8px; 
+    }
+
+    .cabecalho, .linhapreco {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px; 
+    }
+    
+    .preco-container {
+        flex-direction: column; 
+        margin-top: 5px; 
+    }
+
+    .acoes {
+        justify-content: center; 
+    }
 }

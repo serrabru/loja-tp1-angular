@@ -6,8 +6,6 @@
     padding-bottom: 15px;
     margin-top: 20px;
     border-top: 1px solid black;
-    bottom: 0px;
-    position: absolute;
-    width: 100%;
+    flex-wrap: inherit;
     font-family: 'Montserrat', sans-serif;
 }

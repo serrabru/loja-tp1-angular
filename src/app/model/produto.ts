@@ -5,5 +5,6 @@ export interface Produto {
     descricao: string;
     imageURL?: string;
     promo?: boolean;
+    estado?: 'novo' | 'usado' | 'esgotado';
 }
 
