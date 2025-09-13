@@ -1,6 +1,8 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Produto } from '../../../model/produto';
 import { CardProduto } from "../card-produto/card-produto";
+import { ProdutoService } from '../services/produto.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'lista-produtos',
@@ -9,37 +11,11 @@ import { CardProduto } from "../card-produto/card-produto";
   styleUrl: './lista-produtos.css'
 })
 export class ListaProdutos {
-  produtos: Produto[] = [
-    {
-      id: 1,
-      nome: 'A Vida Invisível de Addie Larue',
-      descricao: 'V.E Schwab - Fantasia',
-      preco: 30.00,
-      imageURL: 'images/a_vida_invisivel_de_addie_larue.jpg',
-      promo: true,
-      estado: 'novo'
-    },
-    {
-      id: 2,
-      nome: 'Misery',
-      descricao: 'Stephen King - Suspense',
-      preco: 79.90,
-      imageURL: 'https://i.pinimg.com/1200x/75/73/b8/7573b8d08e7c479e40ef0504ad8fc3b9.jpg',
-      estado: 'usado'
-    },
-    {
-      id: 3,
-      nome: 'O Vilarejo',
-      descricao: 'Raphael Montes - Thriller',
-      preco: 50.90,
-      imageURL: 'images/o_vilarejo.jpg',
-      estado: 'esgotado'
-    }
-  ]
-
+  private produtoService = inject(ProdutoService);
+  private produtos = toSignal<Produto[], Produto[]>(this.produtoService.listar(), {initialValue: []});
   apenaspromo = signal(false);
 
-  prodExibidos = computed(() => this.apenaspromo() ? this.produtos.filter(p => p.promo) : this.produtos);
+  prodExibidos = computed(() => this.apenaspromo() ? this.produtos().filter(p => p.promo) : this.produtos);
 
   alternarPromo(){
     this.apenaspromo.update(p => !p);
