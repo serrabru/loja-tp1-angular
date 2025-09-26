@@ -1,17 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
 .card {
+    box-sizing: border-box; 
     display: grid;
     grid-template-columns: 120px 1fr;
     gap: 16px;
     padding: 16px;
-    border: 1px solid #e5e7eb;
     border-radius: 12px;
     background: #fff;
-    height: 180px;
+    height: 350px;
+    border: 2px solid whitesmoke; 
 }
 
 .card.promo {
-    box-shadow: 0 0 0 2px rgba(25, 118, 210, .1);
     border: 2px dashed #2f9e41;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, .1);
+    outline: none;
+    outline-offset: 0;
 }
 
 .thumb {

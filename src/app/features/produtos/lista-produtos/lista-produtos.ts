@@ -20,7 +20,9 @@ export class ListaProdutos {
   apenaspromo = signal(false);
 
   prodExibidos = computed(() => {
-    return this.apenaspromo() ? this.produtos().filter(p => p.promo) : this.produtos;
+    return this.apenaspromo()
+      ? this.produtos().filter(p => p.promo)
+      : this.produtos();
   });
 
   alternarPromo(){

@@ -1,11 +1,9 @@
-.footer{
+.footer {
     background-color: #BA8E7A;
     color: white;
     text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px;
     margin-top: 20px;
     border-top: 1px solid black;
-    flex-wrap: inherit;
     font-family: 'Montserrat', sans-serif;
 }
