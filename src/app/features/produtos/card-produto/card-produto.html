@@ -2,7 +2,7 @@
     <img class="thumb" [src]="produto().imageURL"[alt]="produto().nome"/>
     <div class="conteudo">
         <header class="cabecalho">
-            <h3 class="titulo">{{produto().nome}}</h3>
+            <h3 class="titulo">{{produto().nome | truncar: 40:false:''}}</h3>
 
             @switch (produto().estado) {
                 @case('novo'){
@@ -17,7 +17,7 @@
             }
 
         </header>
-        <p class="desc">{{produto().descricao | truncar:60:'...'}}</p>
+        <p class="desc">{{produto().descricao | truncar: 40:false:''}}</p>
 
         <div class="preco-container">
             @if(produto().promo){

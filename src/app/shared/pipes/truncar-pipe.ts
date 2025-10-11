@@ -1,13 +1,25 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'truncar'
+  name: 'truncar',
+  pure: true
 })
+export class Truncar implements PipeTransform {
+  transform(
+    valor: string | null | undefined,
+    max = 100,
+    limite = true,
+    etc = '…'
+  ): string {
+    if (!valor) return '';
+    if (valor.length <= max) 
+      return valor;
 
-export class TruncarPipe implements PipeTransform {
-    transform(value: string, limite: number = 20, trail: string = '...'): string {
-        if (!value) return '';
-        if (value.length <= limite) return value;
-        return value.substring(0, limite) + trail;
-    }
+    const parte = valor.slice(0, max);
+    if (!limite) 
+      return parte + etc;
+
+    const espFinal = parte.lastIndexOf(' ');
+    return (espFinal > 0 ? parte.slice(0, espFinal) : parte) + etc;
+  }
 }
