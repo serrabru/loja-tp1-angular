@@ -5,7 +5,7 @@ import { catchError, delay, map, Observable, ObservableInput, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProdutoService {
   private logger = inject(LoggerService);
@@ -14,12 +14,15 @@ export class ProdutoService {
   listar(): Observable<Produto[]> {
     this.logger.info('[ProdutoService] listar()');
     return this.http.get<any[]>('https://fakestoreapi.com/products').pipe(
-      map(lista => lista.map(json => ProdutoMapper.fromJson(json))),
-      catchError(err => of([]))
+      map((lista) => lista.map((json) => ProdutoMapper.fromJson(json))),
+      catchError((err) => {
+        this.logger.error('{ProdutoService} - erro ao listar produtos', err);
+        return of([]);
+      })
     );
   }
 
-  getById(id: number): Observable<Produto | undefined>{
+  getById(id: number): Observable<Produto | undefined> {
     return of();
     //return of(this.listaMock.find(p => id == id))//pipe(delay(500));
   }

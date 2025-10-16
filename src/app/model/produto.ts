@@ -32,7 +32,7 @@ export class ProdutoMapper{
             description: prod.descricao,
             image: prod.imageURL,
             category: 'general'
-        }
+        };
     }
 }
 

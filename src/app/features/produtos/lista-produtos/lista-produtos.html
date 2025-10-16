@@ -1,29 +1,20 @@
 <section class="catalogo">
-    <header class="barradetarefas">
-        <h2>Catalogo</h2>
-        <button class = "btn sopromo" [class.active]="apenaspromo()" (click)="alternarPromo()">
-            @if(apenaspromo()){
-                Mostrar todos
-            } @else {
-                Somente promoções
-            }
-        </button>
-    </header>
-    @if(loading()){
-        <p>Carregando produtos...</p>
+  <header class="barradetarefas">
+    <h2>Catalogo</h2>
+    <button class="btn sopromo" [class.active]="apenaspromo()" (click)="alternarPromo()">
+      @if(apenaspromo()){ Mostrar todos } @else { Somente promoções }
+    </button>
+  </header>
+  @if(loading()){
+  <p>Carregando produtos...</p>
+  } @else if(prodExibidos().length == 0){
+  <p class="vazio">Nenhum produto encontrado para o filtro atual</p>
+  } @else {
+  <div class="grid">
+    @for (p of prodExibidos(); track p.id) {
+    <app-card-produto [produto]="p" (add)="onAddProduto($event)" (view)="onViewProduct($event)">
+    </app-card-produto>
     }
-    @else if(prodExibidos().length === 0){
-        <p class="vazio">Nenhum produto encontrado para o filtro atual</p>   
-    }
-    @else { 
-        <div class="grid">
-            @for (p of prodExibidos(); track p.id) {
-                <app-card-produto
-                    [produto]="p"
-                    (add)="onAddProduto($event)"
-                    (view)="onViewProduct($event)">
-                </app-card-produto>
-            }
-        </div>
-    }
+  </div>
+  }
 </section>
