@@ -21,6 +21,11 @@ export class ProdutoService {
   }
 
   getById(id: number): Observable<Produto | undefined> {
-    return of();//exercicio
+    this.logger.info(`[ProdutoService] - getById(${id}) - consumindo API Externa`);
+    const url = `https://fakestoreapi.com/products/${id}`;
+    return this.http.get<any[]>('url').pipe(
+      map(json => ProdutoMapper.fromJson(json)),
+      catchError(err => of(undefined))
+    )
   }
 }
