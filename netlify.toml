@@ -1,6 +1,6 @@
 [build]
   publish = "dist/loja-tp1-angular/browser"
-  command = "ng build"
+  command = "npm install -g @angular/cli && ng build"
 
 [build.environment]
   NODE_VERSION = "20.19.0"
