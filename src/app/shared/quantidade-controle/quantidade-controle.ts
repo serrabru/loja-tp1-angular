@@ -3,6 +3,7 @@ import { Component, model } from '@angular/core';
 @Component({
   selector: 'app-quantidade-controle',
   imports: [],
+  standalone: true,
   templateUrl: './quantidade-controle.html',
   styleUrl: './quantidade-controle.css'
 })

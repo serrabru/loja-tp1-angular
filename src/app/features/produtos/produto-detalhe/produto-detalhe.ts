@@ -8,6 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-produto-detalhe',
   imports: [DescontoPipe, CurrencyPipe],
+  standalone: true,
   templateUrl: './produto-detalhe.html',
   styleUrl: './produto-detalhe.css'
 })

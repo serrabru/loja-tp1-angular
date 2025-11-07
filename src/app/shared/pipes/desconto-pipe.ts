@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'desconto',
-  pure: true
+  standalone: true
 })
 export class DescontoPipe implements PipeTransform {
 

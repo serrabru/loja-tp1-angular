@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'truncar',
-  pure: true
+  standalone: true
 })
 export class Truncar implements PipeTransform {
   transform(

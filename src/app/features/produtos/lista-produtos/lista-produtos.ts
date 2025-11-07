@@ -9,6 +9,7 @@ import { finalize } from 'rxjs';
 
 @Component({
   selector: 'lista-produtos',
+  standalone: true,
   imports: [CommonModule, CardProduto],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.css'

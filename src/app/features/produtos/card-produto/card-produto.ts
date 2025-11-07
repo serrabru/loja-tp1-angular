@@ -8,6 +8,7 @@ import { Truncar } from "../../../shared/pipes/truncar-pipe";
 @Component({
   selector: 'app-card-produto',
   imports: [QuantidadeControle, CurrencyPipe, DescontoPipe, Truncar],
+  standalone: true,
   templateUrl: './card-produto.html',
   styleUrl: './card-produto.css'
 })
