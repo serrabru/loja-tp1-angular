@@ -1,0 +1,7 @@
+[build]
+  publish = "dist/loja-tp1-angular/browser"
+  command = "ng build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
