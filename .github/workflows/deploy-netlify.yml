@@ -1,0 +1,64 @@
+# 1. Nome do Workflow: Será exibido na aba 'Actions' do GitHub
+name: CI/CD da Aplicação Angular para Netlify
+
+# 2. Gatilho (Trigger): Quando este workflow será executado
+on: 
+    # Executa o workflow sempre que houver um 'push' (envio de código)
+  push:
+    # Apenas na branch 'main'
+    branches:
+      - main 
+
+# 3. Definição dos Trabalhos (Jobs): O que o workflow fará
+jobs:
+  # Nome do trabalho principal: 'build_and_deploy'
+  build_and_deploy:
+    # O trabalho será executado em um ambiente (máquina virtual) Ubuntu mais recente
+    runs-on: ubuntu-latest
+    
+    # Passos (Steps) que o trabalho executará em ordem
+    steps:
+      
+      # PASSO 1: Preparar o ambiente e obter o código
+      - name: Checkout do Repositório
+        # Usa a ação oficial do GitHub para baixar o código do repositório na VM
+        uses: actions/checkout@v4
+
+      # PASSO 2: Configurar o ambiente Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Define a versão do Node.js a ser usada
+          node-version: '20' 
+
+      # PASSO 3: Instalar as dependências do Angular
+      - name: Instalar Dependências (node_modules)
+        # Comando para instalar todos os pacotes definidos no package.json
+        run: npm install
+
+      # PASSO 4: Integração Contínua (CI) - Construção (Build)
+      # O comando Angular que realiza o build do projeto em modo produção
+      # executa npm run build, que compila o código-fonte em arquivos estáticos
+      - name: Construir Aplicação Angular em Modo Produção (Build)
+        # O comando 'ng build' compila a aplicação para arquivos estáticos
+        # "--configuration production" garante a otimização e o modo de produção
+        run: npm run build -- --configuration production
+      
+      # PASSO 5: Entrega Contínua (CD) - Deploy no Netlify
+      - name: Realizar Deploy no Netlify
+        # Pega os arquivos estáticos gerados na pasta dist/loja-tp1-angular e os publica no seu ambiente de Produção no Netlify.
+        # Usa uma ação de terceiros para interagir com o Netlify
+        uses: nwtgck/actions-netlify@v3.0 
+        with:
+          # Define o diretório que será publicado.
+          # Angular coloca os arquivos compilados em 'dist/nome-do-projeto'
+          publish-dir: './dist/loja-tp1-angular' 
+          # Define a branch que será tratada como produção
+          production-branch: main 
+          # O token de autenticação (NETLIFY_AUTH_TOKEN) armazenado como Secret
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          # O ID único do site Netlify (NETLIFY_SITE_ID) armazenado como Secret
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        env:
+          # Define a variável de ambiente para a ação do Netlify
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
