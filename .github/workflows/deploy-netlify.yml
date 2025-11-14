@@ -7,7 +7,7 @@ on:
   push:
     # Apenas na branch 'main'
     branches:
-      - main 
+      - master 
 
 # 3. Definição dos Trabalhos (Jobs): O que o workflow fará
 jobs:
@@ -46,19 +46,18 @@ jobs:
       
       # PASSO 5: Entrega Contínua (CD) - Deploy no Netlify
       - name: Realizar Deploy no Netlify
-        # Pega os arquivos estáticos gerados na pasta dist/loja-tp1-angular e os publica no seu ambiente de Produção no Netlify.
-        # Usa uma ação de terceiros para interagir com o Netlify
+        # Usa a ação de terceiros
         uses: nwtgck/actions-netlify@v3.0 
         with:
-          # Define o diretório que será publicado.
-          # Angular coloca os arquivos compilados em 'dist/nome-do-projeto'
+          # PUBLISH-DIR: A pasta gerada pelo build do Angular
           publish-dir: './dist/loja-tp1-angular' 
-          # Define a branch que será tratada como produção
-          production-branch: main 
-          # O token de autenticação (NETLIFY_AUTH_TOKEN) armazenado como Secret
+          production-branch: master
+          
+          # PARTE CRUCIAL: Passando o Token de Autenticação
+          # O Netlify Action usa o token passado no 'with'
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          # O ID único do site Netlify (NETLIFY_SITE_ID) armazenado como Secret
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        
+        # O bloco 'env' é uma camada de segurança extra para garantir o acesso ao token
+        # NETLIFY_AUTH_TOKEN é a única variável de ambiente necessária aqui
         env:
-          # Define a variável de ambiente para a ação do Netlify
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
