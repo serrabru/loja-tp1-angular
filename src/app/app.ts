@@ -8,15 +8,15 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [Header, Footer, RouterOutlet, ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-
-    sobre? : string;
 
 //input = [nome]
 //output = (nome)
 //model = [(contador) = "signal"]
+
+  sobre? : string;
   qtd = signal(1);
 
   receberSobre(texto: string){

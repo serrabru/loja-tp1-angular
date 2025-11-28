@@ -10,11 +10,12 @@ import { LoggerService } from '../../../core/services/logger/logger.service';
 export class ProdutoService {
   logger = inject(LoggerService);
   http = inject(HttpClient);
+  apiURL = 'https://fakestoreapi.com/products';
 
 
   listar(): Observable<Produto[]> {
     this.logger.info('[ProdutoService] - listar() - consumindo API Externa');
-    return this.http.get<any[]>('https://fakestoreapi.com/products').pipe(
+    return this.http.get<any[]>(this.apiURL).pipe(
       map(lista => lista.map(json => ProdutoMapper.fromJson(json))),
       catchError(err => of([]))
     );
@@ -22,5 +23,16 @@ export class ProdutoService {
 
   getById(id: number): Observable<Produto | undefined> {
     return of();//exercicio
+  }
+
+  criar(produto: Produto) : Observable<any>{
+    let body = {
+      title: produto.nome,
+      price: produto.preco,
+      dscription: produto.descricao,
+      image: produto.imageURL,
+      category: produto.categoria
+    };
+    return this.http.post(this.apiURL, body);
   }
 }
